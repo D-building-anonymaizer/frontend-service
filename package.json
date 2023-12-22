@@ -27,6 +27,8 @@
 		"npm-react": "^1.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-router": "^6.21.1",
+		"react-router-dom": "^6.21.1",
 		"react-scripts": "^5.0.1",
 		"typescript": "^4.9.2",
 		"typescript-plugin-css-modules": "^5.0.1"
