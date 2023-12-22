@@ -1,0 +1,52 @@
+{
+	"name": "anonymizer",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "cross-env NODE_ENV=development PORT=10888 HTTPS=true react-scripts --openssl-legacy-provider start ",
+		"build": " react-scripts --openssl-legacy-provider build",
+		"deploy": "cross-env NODE_ENV=production vercel build && vercel --prod"
+	},
+	"engines": {
+		"node": ">=12.0.0"
+	},
+	"homepage": "./",
+	"keywords": [],
+	"license": "MIT",
+	"dependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.0",
+		"@reatom/framework": "^3.4.21",
+		"@reatom/npm-react": "^3.6.1",
+		"@types/jest": "^29.5.1",
+		"@types/node": "^20.2.4",
+		"@types/react": "^18.2.7",
+		"@types/react-dom": "^18.2.4",
+		"@vkontakte/icons": "^2.36.0",
+		"axios": "^1.4.0",
+		"classnames": "^2.3.2",
+		"cross-env": "^7.0.3",
+		"npm-react": "^1.0.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-scripts": "^5.0.1",
+		"typescript": "^4.9.2",
+		"typescript-plugin-css-modules": "^5.0.1"
+	},
+	"resolutions": {
+		"react-scripts/webpack-dev-server/yargs/yargs-parser": ">=18.1.2"
+	},
+	"overrides": {
+		"es5-ext@^0.10.50": "0.10.53"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}

@@ -1,0 +1,10 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  color: var(--vkui--color_text_primary);
+}

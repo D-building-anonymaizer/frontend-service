@@ -1,0 +1,82 @@
+@import url(./colors.css);
+
+* {
+	box-sizing: border-box;
+	font-family: "Roboto";
+	/* color: var(--vkui--color_text_primary); */
+}
+
+button,
+a {
+	padding: 0;
+	margin: 0;
+	outline: hidden;
+	border: none;
+	background: none;
+	text-decoration: none;
+}
+
+button:hover,
+button:active,
+a:active,
+a:hover {
+	cursor: pointer;
+}
+
+/* хром, сафари */
+*::-webkit-scrollbar {
+	width: 0;
+}
+
+/* ie 10+ */
+* {
+	-ms-overflow-style: none;
+	overflow: -moz-scrollbars-none;
+}
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+}
+
+#root {
+	height: 100vh;
+}
+
+.vkuiCard {
+	animation: fadeSlideIn 0.5s ease normal forwards;
+	border-radius: 20px;
+}
+
+@keyframes fadeSlideIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.vkuiBaseGallery__bullets {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 16px; bottom: 16px;
+}
+
+.vkuiBaseGallery__bullet {
+	width: 100%;
+	border-radius: 0;
+	height: 1px;
+	background: #b8c1cc;
+}
+
+.vkuiBaseGallery__bullet.vkuiBaseGallery__bullet--active {
+	background: #fff;
+}
