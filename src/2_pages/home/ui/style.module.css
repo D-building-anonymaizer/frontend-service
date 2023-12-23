@@ -12,6 +12,7 @@
 }
 
 .drop_zone {
+	position: relative;
 	width: 100%;
 	height: 400px;
 	display: flex;
@@ -22,6 +23,10 @@
 	border-radius: 30px;
 	background: rgba(1, 1, 1, 0.06);
 	border: 1px dashed #73c66d;
+}
+
+.drop_zone:hover {
+	cursor: pointer;
 }
 
 .drop_zone__icon {
@@ -35,7 +40,7 @@
 	font-weight: 500;
 	line-height: normal;
 	text-align: center;
-	max-width: 550px;
+	max-width: 80%;
 	overflow-y: hidden;
 	text-overflow: ellipsis;
 
@@ -58,4 +63,16 @@
 	justify-content: center;
 	flex-direction: column;
 	gap: 28px;
+}
+
+.hover::before {
+	content: "";
+	width: 100%;
+	border-radius: 30px;
+	height: 400px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: rgba(1, 1, 1, 0.35);
 }
