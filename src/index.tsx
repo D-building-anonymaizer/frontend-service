@@ -7,5 +7,6 @@ import "./6_shared/styles/styles.css";
 import { hot } from "react-hot-loader";
 
 process.env.NODE_ENV === "development" && connectLogger(ctx);
-
-hot(createRoot(document.getElementById("root") as Element).render(<App />));
+process.env.NODE_ENV === "development"
+	? hot(createRoot(document.getElementById("root") as Element).render(<App />))
+	: createRoot(document.getElementById("root") as Element).render(<App />);
