@@ -29,6 +29,10 @@ html {
 	padding: 0;
 }
 
+body {
+	padding-bottom: 142px;
+}
+
 @keyframes fadeSlideIn {
 	0% {
 		opacity: 0;
