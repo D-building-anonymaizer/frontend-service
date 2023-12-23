@@ -1,0 +1,124 @@
+.form__input {
+	display: none;
+}
+
+.choose_file {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 28px;
+	width: fit-content;
+}
+
+.wrapper__bg {
+	width: 100%;
+	background: #f6f1f1;
+	border-radius: 30px;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.wrapper {
+	width: 100%;
+	min-height: 200px;
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 30px;
+	background: rgba(1, 1, 1, 0.06);
+	padding: 20px;
+}
+
+.delete {
+	color: #D24242;
+}
+
+.delete svg {
+	width: 24px;
+	height: 24px;
+}
+
+.error_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.file_card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 16px;
+	background: #d9d9d9;
+	padding: 14px 21px;
+	height: 75px;
+}
+
+.size {
+
+position: relative;
+left: -45px;
+}
+
+.file_card:not(:last-of-type) {
+	margin-bottom: 15px;
+}
+
+.file_card__name {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 17vw;
+}
+
+.file_card__upload_date {
+	width: 160px;
+	text-align: left;
+}
+
+.file_card__size {
+	width: 100px;
+	text-align: center;
+}
+
+.file_card__status {
+	text-align: right;
+}
+
+.empty_list {
+	color: #838383;
+	text-align: center;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	text-align: center;
+}
+
+.wrapper.empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.file_list__fields_titles {
+	padding: 0 45px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.field_title {
+	color: #000;
+	text-align: center;
+	font-family: Montserrat;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
