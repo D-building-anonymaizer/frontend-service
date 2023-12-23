@@ -5,12 +5,19 @@ import { Spacing } from "../../../6_shared/ui/components/Spacing/";
 import { Button } from "./../../../6_shared/ui/components/Button/";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { sendFileAction } from "../../../4_features/request-analysis/model/request-analysis-model";
+import { useAction } from "@reatom/npm-react";
 
 export const Home = () => {
 	const navigate = useNavigate();
+
 	const [fileState, setFileState] = useState<File | null>(null);
+
+	const sendFile = useAction(sendFileAction);
+
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
 	const dropZoneRef = useRef<HTMLDivElement | null>(null);
+	const formRef = useRef<HTMLFormElement | null>(null);
 
 	const handleClick = (e: any) => {
 		const input = fileInputRef.current;
@@ -22,7 +29,7 @@ export const Home = () => {
 	useLayoutEffect(() => {
 		const dropZone = dropZoneRef.current;
 		if (dropZone) {
-			let hoverClassName = "hover";
+			let hoverClassName = s.hover;
 
 			dropZone.addEventListener("dragenter", function (e) {
 				e.preventDefault();
@@ -40,29 +47,39 @@ export const Home = () => {
 			});
 
 			// Это самое важное событие, событие, которое дает доступ к файлам
-			dropZone.addEventListener("drop", function (e) {
+			dropZone.addEventListener("drop", (e) => {
 				e.preventDefault();
 				dropZone.classList.remove(hoverClassName);
 				if (e.dataTransfer?.files) {
 					const files = Array.from(e.dataTransfer.files);
-					console.log(files);
 					setFileState(files[0]);
 				}
 			});
 		}
 	}, [fileInputRef.current]);
 
+	useEffect(() => {
+		if (fileState?.name && formRef.current) {
+			console.log(fileState);
+			const data = new FormData(formRef.current);
+			data.append("file", fileState);
+			sendFile(data);
+			setTimeout(() => {
+				navigate("/uploaded");
+			}, 1000);
+		}
+	}, [fileState]);
+
 	return (
 		<>
 			<Spacing size={15} />
-			<form className={s.form}>
+			<form className={s.form} ref={formRef}>
 				<input
 					maxLength={1}
-					accept='.doc,.docx, image/png, image/jpeg, image/jpg'
+					accept='.doc, .docx, image/png, image/jpeg, image/jpg'
 					onChange={(e) => {
 						if (e.target.files) {
 							setFileState(e.target.files[0]);
-							// navigate("/uploaded");
 						}
 					}}
 					ref={fileInputRef}
@@ -72,6 +89,7 @@ export const Home = () => {
 				/>
 				<div className={s.drop_zone_wrapper}>
 					<div
+						onClick={(e) => handleClick(e)}
 						ref={dropZoneRef}
 						className={s.drop_zone}>
 						<img
