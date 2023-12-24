@@ -44,3 +44,12 @@ body {
 		transform: translateY(0);
 	}
 }
+
+button {
+	transition: .2s ease;
+
+}
+
+button:active {
+	transform: scale(0.96);
+}

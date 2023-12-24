@@ -4,10 +4,21 @@
 	position: sticky;
 	top: 0;
 	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .header span:hover {
 	cursor: pointer;
+}
+
+.header button {
+	padding: 12px 14px;
+	border: 2px solid #73C66D;
+	border-radius: 8px;
+	color: #73C66D;
+
 }
 
 .title {
@@ -17,3 +28,4 @@
 	font-weight: 400;
 	line-height: normal;
 }
+

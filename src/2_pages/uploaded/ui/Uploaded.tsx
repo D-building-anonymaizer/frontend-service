@@ -37,6 +37,7 @@ export const Uploaded = () => {
 					file: fileState,
 					uploadDate: date.toLocaleString(),
 					processed: res ? true : false,
+					hashName: res ? "" : "",
 				};
 				setUploadedFiles([...uploadedFiles, newFile]);
 			}

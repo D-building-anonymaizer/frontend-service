@@ -8,6 +8,8 @@ import { Layout } from "./../2_pages/layout/ui/Layout";
 import { Uploaded } from "../2_pages/uploaded/ui/Uploaded";
 
 const App = (): JSX.Element => {
+
+	
 	return (
 		<reatomContext.Provider value={ctx}>
 			<BrowserRouter >

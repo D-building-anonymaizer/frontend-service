@@ -71,6 +71,7 @@ export const Home = () => {
 				const newFile: FileForAnalysis = {
 					file: fileState,
 					uploadDate: date.toLocaleString(),
+					hashName: res ? "" : "",
 					processed: res ? true : false,
 				};
 				setUploadedFiles([...uploadedFiles, newFile]);
