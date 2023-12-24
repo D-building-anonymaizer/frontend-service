@@ -6,6 +6,10 @@
 	background-color: #fff;
 }
 
+.header span:hover {
+	cursor: pointer;
+}
+
 .title {
 	color: #000;
 	font-size: 40px;

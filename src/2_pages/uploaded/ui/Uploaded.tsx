@@ -26,13 +26,27 @@ export const Uploaded = () => {
 	};
 
 	useEffect(() => {
-		if (fileState && formRef.current) {
-			console.log(fileState);
-			const data = new FormData(formRef.current);
-			data.append("file", fileState);
-			sendFile(data);
-		}
+		(async () => {
+			if (fileState && formRef.current) {
+				console.log(fileState);
+				const data = new FormData(formRef.current);
+				data.append("file", fileState);
+				const res = await sendFile(data);
+				const date = new Date();
+				const newFile: FileForAnalysis = {
+					file: fileState,
+					uploadDate: date.toLocaleString(),
+					processed: res ? true : false,
+				};
+				setUploadedFiles([...uploadedFiles, newFile]);
+			}
+		})();
 	}, [fileState]);
+
+	const handleDelete = (filter: any) => {
+		const temp = uploadedFiles.filter((el) => el.uploadDate !== filter);
+		setUploadedFiles(temp);
+	};
 
 	return (
 		<div style={{ padding: "0 100px" }}>
@@ -45,14 +59,7 @@ export const Uploaded = () => {
 					accept='.doc, .docx, image/png, image/jpeg, image/jpg'
 					onChange={(e) => {
 						if (e.target.files?.length) {
-							const date = new Date();
-							const newFile: FileForAnalysis = {
-								file: e.target.files[0],
-								uploadDate: date.toLocaleString(),
-								processed: false,
-							};
 							setFileState(e.target.files[0]);
-							setUploadedFiles([...uploadedFiles, newFile]);
 						}
 					}}
 					ref={fileInputRef}
@@ -107,7 +114,11 @@ export const Uploaded = () => {
 												<span className={s.file_card__status}>
 													Ошибка при анализе
 												</span>
-												<button className={s.delete}>
+												<button
+													onClick={() => {
+														handleDelete(el.uploadDate);
+													}}
+													className={s.delete}>
 													<svg
 														width='800px'
 														height='800px'

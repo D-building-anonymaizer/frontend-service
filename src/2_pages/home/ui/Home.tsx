@@ -6,7 +6,8 @@ import { Button } from "./../../../6_shared/ui/components/Button/";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { sendFileAction } from "../../../4_features/request-analysis/model/request-analysis-model";
-import { useAction } from "@reatom/npm-react";
+import { useAction, useAtom } from "@reatom/npm-react";
+import { uploadedFilesAtom } from "../../uploaded/model/uploaded-model";
 
 export const Home = () => {
 	const navigate = useNavigate();
@@ -14,6 +15,7 @@ export const Home = () => {
 	const [fileState, setFileState] = useState<File | null>(null);
 
 	const sendFile = useAction(sendFileAction);
+	const [uploadedFiles, setUploadedFiles] = useAtom(uploadedFilesAtom);
 
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
 	const dropZoneRef = useRef<HTMLDivElement | null>(null);
@@ -46,7 +48,6 @@ export const Home = () => {
 				dropZone.classList.remove(hoverClassName);
 			});
 
-			// Это самое важное событие, событие, которое дает доступ к файлам
 			dropZone.addEventListener("drop", (e) => {
 				e.preventDefault();
 				dropZone.classList.remove(hoverClassName);
@@ -59,21 +60,33 @@ export const Home = () => {
 	}, [fileInputRef.current]);
 
 	useEffect(() => {
-		if (fileState?.name && formRef.current) {
-			console.log(fileState);
-			const data = new FormData(formRef.current);
-			data.append("file", fileState);
-			sendFile(data);
-			setTimeout(() => {
-				navigate("/uploaded");
-			}, 1000);
-		}
+		(async () => {
+			if (fileState?.name && formRef.current) {
+				console.log(fileState);
+				const data = new FormData(formRef.current);
+				data.append("file", fileState);
+				sendFile(data);
+				const res = await sendFile(data);
+				const date = new Date();
+				const newFile: FileForAnalysis = {
+					file: fileState,
+					uploadDate: date.toLocaleString(),
+					processed: res ? true : false,
+				};
+				setUploadedFiles([...uploadedFiles, newFile]);
+				setTimeout(() => {
+					navigate("/uploaded");
+				}, 1000);
+			}
+		})();
 	}, [fileState]);
 
 	return (
 		<>
 			<Spacing size={15} />
-			<form className={s.form} ref={formRef}>
+			<form
+				className={s.form}
+				ref={formRef}>
 				<input
 					maxLength={1}
 					accept='.doc, .docx, image/png, image/jpeg, image/jpg'

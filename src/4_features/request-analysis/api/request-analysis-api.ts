@@ -5,10 +5,10 @@ export const send = async (file: FormData) => {
 		.post("/analize", file)
 		.then((res) => {
 			console.log(res);
-			return res;
+			return true;
 		})
 		.catch((res) => {
 			console.error(res);
-			return res;
+			return false;
 		});
 };
