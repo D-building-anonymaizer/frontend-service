@@ -8,6 +8,7 @@ export const Header = () => {
 	
 	const handleClose = () => {
 		closeService();
+		window.close();
 	};
 
 	return (

@@ -63,9 +63,10 @@ export const Home = () => {
 		(async () => {
 			if (fileState?.name && formRef.current) {
 				console.log(fileState);
+				
+				console.log(fileState);
 				const data = new FormData(formRef.current);
 				data.append("file", fileState);
-				sendFile(data);
 				const res = await sendFile(data);
 				const date = new Date();
 				const newFile: FileForAnalysis = {
